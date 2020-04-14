@@ -1,6 +1,6 @@
 ﻿@import 'Colors.scss';
 
-.dashboard {
+.left-dashboard {
     width: 320px;
     height: 100vh;
     position: absolute;
@@ -16,13 +16,12 @@
 
 
         &__content {
-            width: 90%;
+            width: 92%;
             height: 102%;
             margin: auto;
             margin-top: 3%;
-            background-color: $silver;
+            background-color: $light-charcoal;
             clip-path: polygon(50% 0%, 100% 0, 100% 75%, 72% 100%, 28% 100%, 0% 75%, 0 0);
-            box-shadow: 2px 2px 2px #000000;
         }
     }
 
@@ -33,13 +32,59 @@
         background-color: $bluegray;
 
         &__content {
-            width: 90%;
-            height: 103%;
+            width: 92%;
+            height: 104%;
             margin: auto;
             margin-top: -11%;
-            background-color: $silver;
-            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0, 26% 10%, 74% 10%);
-            box-shadow: 2px 2px 2px #000000;
+
+            &__list {
+                height: 90%;
+                text-align: center;
+                padding-top: 30%;
+                text-decoration: none;
+                list-style: none;
+                padding-inline-start: 0px;
+
+                li {
+                    background-color: $white;
+                    width: 100%;
+
+                    a {
+                        padding: 5px 0px;
+                        color: white;
+                        font-size: 30px;
+                        display: block;
+                        margin: 30px auto;
+                        background-color: $bluegray;
+                        cursor: pointer;
+                        clip-path: polygon(0 0, 100% 0, 100% 60%, 100% 100%, 0 100%, 4% 76%, 4% 24%);
+                        border-top: 1px solid $bluegray;
+                        border-right: 1px solid $bluegray;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
         }
+    }
+}
+
+.right-dashboard {
+    width: 75px;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: $bluegray;
+
+    &__content {
+        width: 90%;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-shadow: 2px 2px 2px #000000;
+
     }
 }

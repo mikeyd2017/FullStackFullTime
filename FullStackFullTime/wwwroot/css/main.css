@@ -10,9 +10,9 @@ p {
   height: 100vh;
   overflow-y: scroll;
   float: right;
-  background: linear-gradient(360deg, #17252A 0%, #DEF2F1 5%); }
+  background: linear-gradient(360deg, #17252A 0%, #1a1a1a 2.5%); }
   .mainContainer__content {
-    width: 100%;
+    width: calc(100% - 75px);
     padding-left: 20px;
     padding-right: 20px; }
 

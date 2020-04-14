@@ -1,15 +1,42 @@
 ﻿@import 'Colors.scss';
 @import 'Fonts.scss';
+@import 'Animations.scss';
 
 .questions {
     &__title {
         color: $white;
-        font-size: 35px;
+        font-size: 90px;
         font-family: $raleway;
         font-weight: $bold;
 
         &-highlight {
             color: $teal;
+        }
+    }
+
+    &__textinput {
+        border: none;
+        border-bottom: solid;
+        background-color: transparent;
+        width: 100%;
+        font-size: 35px;
+        outline: none;
+        border-radius: 2px;
+        transition: all .6s linear;
+        border-width: 3px;
+        border-color: white;
+
+
+        &:focus {
+            border-color: $teal;
+        }
+
+        &:active {
+            border-color: $teal;
+        }
+
+        &:hover {
+            border-color: $teal;
         }
     }
 }

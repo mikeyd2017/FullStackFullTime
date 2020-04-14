@@ -14,5 +14,9 @@
   {
     "outputFile": "wwwroot/css/questions.css",
     "inputFile": "Styles/Questions.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/animations.css",
+    "inputFile": "Styles/Animations.scss"
   }
 ]

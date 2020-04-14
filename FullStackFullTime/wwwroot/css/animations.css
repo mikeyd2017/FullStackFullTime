@@ -1,0 +1,6 @@
+﻿@keyframes text-input {
+  0% {
+    background-color: red; }
+  100% {
+    border-bottom: 10px #3AAFA9;
+    background-color: yellow; } }

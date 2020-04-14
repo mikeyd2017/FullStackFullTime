@@ -1,0 +1,12 @@
+﻿@import 'Colors.scss';
+
+@keyframes text-input {
+    0% {
+        background-color: red;
+    }
+
+    100% {
+        border-bottom: 10px $teal;
+        background-color: yellow;
+    }
+}

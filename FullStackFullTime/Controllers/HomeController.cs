@@ -5,13 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FullStackFullTime.Models;
+using Microsoft.Extensions.Configuration;
+using FullStackFullTime.SqlCommands;
 
 namespace FullStackFullTime.Controllers
 {
     public class HomeController : Controller
     {
+
+        private Factory oFactory = new Factory();
+
+        public HomeController(IConfiguration iConfig)
+        {
+            oFactory.DataHelper = new Helpers.DataHelper(iConfig);
+            oFactory.AccountCommands = new AccountCommands(oFactory.DataHelper);
+            oFactory.TableCommands = new TableCommands(oFactory.DataHelper);
+        }
         public IActionResult Questions()
         {
+            //oFactory.TableCommands.CreateUserTable();
             return View();
         }
 

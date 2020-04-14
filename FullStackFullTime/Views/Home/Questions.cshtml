@@ -5,4 +5,7 @@
 
 <div class="questions">
     <h1 class="questions__title"><span class="questions__title-highlight">Ask</span> a question.</h1>
+    <form asp-controller="HomeController" asp-action="AddQuestion" method="post">
+        <input name="QuestionText" class="questions__textinput"/>
+    </form>
 </div>

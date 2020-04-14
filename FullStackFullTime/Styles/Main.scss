@@ -14,10 +14,10 @@ p {
     height: 100vh;
     overflow-y: scroll;
     float: right;
-    background: linear-gradient(360deg, $bluegray 0%, $silver 5%);
+    background: linear-gradient(360deg, $bluegray 0%, $light-charcoal 2.5%);
 
     &__content {
-        width: 100%;
+        width: calc(100% - 75px);
         padding-left: 20px;
         padding-right: 20px;
     }
