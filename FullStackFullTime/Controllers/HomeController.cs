@@ -7,23 +7,34 @@ using Microsoft.AspNetCore.Mvc;
 using FullStackFullTime.Models;
 using Microsoft.Extensions.Configuration;
 using FullStackFullTime.SqlCommands;
+using Microsoft.AspNetCore.Http;
+using FullStackFullTime.Helpers;
 
 namespace FullStackFullTime.Controllers
 {
     public class HomeController : Controller
     {
 
-        private Factory oFactory = new Factory();
+        private Factory _Factory = new Factory();
 
         public HomeController(IConfiguration iConfig)
         {
-            oFactory.DataHelper = new Helpers.DataHelper(iConfig);
-            oFactory.AccountCommands = new AccountCommands(oFactory.DataHelper);
-            oFactory.TableCommands = new TableCommands(oFactory.DataHelper);
+            _Factory.DataHelper = new DataHelper(iConfig);
+            _Factory.AccountCommands = new AccountCommands(_Factory.DataHelper);
+            _Factory.TableCommands = new TableCommands(_Factory.DataHelper);
         }
         public IActionResult Questions()
         {
-            //oFactory.TableCommands.CreateUserTable();
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                HttpContext.Session.SetString("username", "");
+            }
+
+            if (HttpContext.Session.GetString("role") == null)
+            {
+                HttpContext.Session.SetString("role", "");
+            }
+
             return View();
         }
 

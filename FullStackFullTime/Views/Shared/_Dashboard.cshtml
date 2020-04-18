@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -6,7 +8,15 @@
 <div class="left-dashboard">
     <div class="left-dashboard__top__container">
         <div class="left-dashboard__top__container__content">
+            @if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
+            {
+            <h1>No User</h1>
+            } else
+            {
+            <h1>@httpContextAccessor.HttpContext.Session.GetString("username")</h1>
+            <h2>@httpContextAccessor.HttpContext.Session.GetString("role")</h2>
 
+            }
         </div>
     </div>
     <div class="left-dashboard__bottom__container">
@@ -15,7 +25,8 @@
                 <li><a>Home</a></li>
                 <li><a>Questions</a></li>
                 <li><a>Account</a></li>
-                <li><a>Log In</a></li>
+                <li>@Html.ActionLink("Log In", "Login", "Account")</li>
+                <li>@Html.ActionLink("Register", "Register", "Account")</li>
             </ul>
         </div>
     </div>

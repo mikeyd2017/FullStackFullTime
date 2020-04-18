@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FullStackFullTime.Helpers;
 using FullStackFullTime.SqlCommands;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -16,6 +18,7 @@ namespace FullStackFullTime.Controllers
         {
             _Factory.DataHelper = new Helpers.DataHelper(iConfig);
             _Factory.AccountCommands = new AccountCommands(_Factory.DataHelper);
+            _Factory.AccountHelper = new AccountHelper(_Factory);
         }
         public IActionResult Index()
         {
@@ -28,20 +31,26 @@ namespace FullStackFullTime.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string test)
+        public IActionResult Login(string username, string password)
         {
+            _Factory.AccountHelper.CheckAccount(username, password);
+
+            HttpContext.Session.SetString("role", _Factory.AccountCommands.GetUserRole(username));
+            HttpContext.Session.SetString("username", username);
+
             return View();
         }
 
-        public IActionResult CreateAccount()
+        public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateUser(string username, string password, string email)
+        public IActionResult Register(string username, string password, string email)
         {
-            
+
+            _Factory.AccountHelper.CreateUser(username, _Factory.AccountHelper.HashPassword(password), email);
             return View();
         }
 

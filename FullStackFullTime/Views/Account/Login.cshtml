@@ -3,5 +3,9 @@
     ViewData["Title"] = "Login";
 }
 
-<h2>Login</h2>
+<form method="post" asp-controller="Account" asp-action="Login">
+    Username: <input asp-for="Username" />
+    Password: <input asp-for="Password" />
+    <button type="submit"></button>
+</form>
 

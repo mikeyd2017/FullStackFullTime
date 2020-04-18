@@ -27,5 +27,18 @@ namespace FullStackFullTime.SqlCommands
             DataHelper.DbConn.Close();
             return true;
         }
+
+        public bool AddHashedPassToUserTable()
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+            cmd.CommandText = "ALTER TABLE Users Alter Column Password char(300);";
+            cmd.ExecuteNonQuery();
+
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
     }
 }

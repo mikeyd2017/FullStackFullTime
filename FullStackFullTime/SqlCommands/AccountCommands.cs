@@ -11,6 +11,8 @@ namespace FullStackFullTime.SqlCommands
     public class AccountCommands
     {
         private DataHelper DataHelper;
+        private string password;
+        private string role;
 
         public AccountCommands(DataHelper dataHelper)
         {
@@ -38,5 +40,47 @@ namespace FullStackFullTime.SqlCommands
 
             return true;
         }
+
+        public string GetHashedPassword(string username)
+        {
+            
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Password From Users Where Username = @username;";
+
+            cmd.Parameters.Add(new SqlParameter("username", username));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                password = dr[0].ToString();
+            }
+            DataHelper.DbConn.Close();
+            return password;
+        }
+
+        public string GetUserRole(string username)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Role From Users Where Username = @username;";
+
+            cmd.Parameters.Add(new SqlParameter("username", username));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                role = dr[0].ToString();
+            }
+            DataHelper.DbConn.Close();
+            return role;
+        }
+
     }
 }
