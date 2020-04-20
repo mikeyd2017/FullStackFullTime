@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Question>
+@{
+    ViewData["Title"] = "Questions";
+}
+
+@foreach (var question in Model)
+{
+    @Html.ActionLink("Go To Question", "Question", "Question", new { questionID = question.QuestionID });
+    <p>@question.QuestionText</p>
+    <p>@question.CreateDate</p>
+    <p>@question.CategoryLanguage</p>
+}
+
+<div class="right-dashboard">
+    <div class="right-dashboard__content">
+
+    </div>
+</div>
+

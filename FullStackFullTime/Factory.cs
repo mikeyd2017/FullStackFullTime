@@ -15,19 +15,24 @@ namespace FullStackFullTime
         //That way we don't have to remake the whole factory every time the controller is called, it's not too intensive either way.
         public DataHelper DataHelper;
         public AccountHelper AccountHelper;
+        public QuestionHelper QuestionHelper;
         public AccountCommands AccountCommands;
         public TableCommands TableCommands;
+        public QuestionCommands QuestionCommands;
+
 
         public Factory()
         {
 
         }
-        public Factory(DataHelper dataHelper, [Optional] AccountHelper accountHelper, [Optional] AccountCommands accountCommands, [Optional] TableCommands tableCommands)
+        public Factory(DataHelper dataHelper, [Optional] AccountHelper accountHelper, [Optional] AccountCommands accountCommands, [Optional] TableCommands tableCommands, [Optional] QuestionCommands questionCommands, [Optional] QuestionHelper questionHelper)
         {
             DataHelper = dataHelper;
             AccountCommands = accountCommands;
             TableCommands = tableCommands;
             AccountHelper = accountHelper;
+            QuestionCommands = questionCommands;
+            QuestionHelper = questionHelper;
         }
     }
 }

@@ -23,8 +23,9 @@ namespace FullStackFullTime.Controllers
             _Factory.AccountCommands = new AccountCommands(_Factory.DataHelper);
             _Factory.TableCommands = new TableCommands(_Factory.DataHelper);
         }
-        public IActionResult Questions()
+        public IActionResult Landing()
         {
+            HttpContext.Session.SetString("categoryLanguage", "C#");
             if (HttpContext.Session.GetString("username") == null)
             {
                 HttpContext.Session.SetString("username", "");
@@ -35,25 +36,11 @@ namespace FullStackFullTime.Controllers
                 HttpContext.Session.SetString("role", "");
             }
 
-            return View();
-        }
+            if (HttpContext.Session.GetString("userID") == null)
+            {
+                HttpContext.Session.SetString("userID", "");
+            }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 

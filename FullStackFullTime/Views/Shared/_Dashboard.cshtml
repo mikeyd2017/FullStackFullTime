@@ -5,36 +5,40 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div class="left-dashboard">
-    <div class="left-dashboard__top__container">
-        <div class="left-dashboard__top__container__content">
+    <div class="left-dashboard">
+        <div class="left-dashboard__top__container">
+            <h1><span>F</span><span>S</span></h1>
+            <h1><span>F</span><span>T</span></h1>
+        </div>
+        <div class="left-dashboard__mid__container">
             @if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
             {
-            <h1>No User</h1>
-            } else
+                <h3>Log In To View Profile</h3>
+            }
+            else
             {
-            <h1>@httpContextAccessor.HttpContext.Session.GetString("username")</h1>
-            <h2>@httpContextAccessor.HttpContext.Session.GetString("role")</h2>
+                <h3>@httpContextAccessor.HttpContext.Session.GetString("username")</h3>
+                <h4>@httpContextAccessor.HttpContext.Session.GetString("role")</h4>
 
             }
         </div>
-    </div>
-    <div class="left-dashboard__bottom__container">
-        <div class="left-dashboard__bottom__container__content">
-            <ul class="left-dashboard__bottom__container__content__list">
+        <div class="left-dashboard__bottom__container">
+            <ul class="left-dashboard__bottom__container__list">
                 <li><a>Home</a></li>
-                <li><a>Questions</a></li>
-                <li><a>Account</a></li>
+                <li>@Html.ActionLink("All Questions", "Questions", "Question")</li>
+                <li>@Html.ActionLink("Ask a Question", "Ask", "Question")</li>
                 <li>@Html.ActionLink("Log In", "Login", "Account")</li>
+                <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
                 <li>@Html.ActionLink("Register", "Register", "Account")</li>
             </ul>
         </div>
     </div>
-</div>
 
 <div class="right-dashboard">
     <div class="right-dashboard__content">
-
+        <div><a>C#</a></div>
+        <div><a>JS</a></div>
+        <div><a>PHP</a></div>
     </div>
 </div>
 

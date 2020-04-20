@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+@model FullStackFullTime.ViewModels.Question
+@{
+    ViewData["Title"] = "Question";
+
+    <p>@Model.ModelQuestion.QuestionID</p>
+    <p>@Model.ModelQuestion.QuestionText</p>
+    <p>@Model.ModelQuestion.CreateDate</p>
+    <p>@Model.ModelQuestion.CategoryLanguage</p>
+
+    @if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
+    {
+        <h1>Log in to answer a question</h1>
+    }
+    else
+    {
+        <form asp-controller="Question" asp-action="AddComment" method="post">
+            <input type="hidden" name="userID" value="@httpContextAccessor.HttpContext.Session.GetString("userID")" />
+            <input type="hidden" name="questionID" value="@Model.ModelQuestion.QuestionID"/>
+            <input type="text" name="commentText" />
+            <input type="submit" />
+        </form>
+    }
+
+
+    @foreach (var comment in Model.Comments)
+    {
+        <p>@comment.CommentID</p>
+
+        <p>@comment.CommentText</p>
+        <p>@comment.CreateDate</p>
+
+
+    }
+}
+

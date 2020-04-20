@@ -61,7 +61,7 @@ namespace FullStackFullTime
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Questions}/{id?}");
+                    template: "{controller=Home}/{action=Landing}/{id?}");
             });
         }
     }

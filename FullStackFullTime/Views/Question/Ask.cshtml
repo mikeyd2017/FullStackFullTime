@@ -1,0 +1,26 @@
+﻿@model Question
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    ViewData["Title"] = "Ask";
+}
+
+@if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
+{
+    <h1>Log in to ask a question</h1>
+}
+else
+{
+    <div class="questions">
+        <h1 class="questions__title"><span class="questions__title-highlight">Ask</span> a question.</h1>
+        <form asp-controller="Question" asp-action="Ask" method="post">
+            <input type="hidden" asp-for="UserID" value="@httpContextAccessor.HttpContext.Session.GetString("userID")" />
+            <input type="hidden" asp-for="CategoryLanguage" value="@httpContextAccessor.HttpContext.Session.GetString("categoryLanguage")" />
+            <input type="text" asp-for="QuestionText" class="questions__textinput" />
+            <input type="submit" />
+        </form>
+    </div>
+}
+
+

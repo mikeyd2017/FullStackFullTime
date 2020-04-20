@@ -13,6 +13,7 @@ namespace FullStackFullTime.SqlCommands
         private DataHelper DataHelper;
         private string password;
         private string role;
+        private int userID;
 
         public AccountCommands(DataHelper dataHelper)
         {
@@ -80,6 +81,26 @@ namespace FullStackFullTime.SqlCommands
             }
             DataHelper.DbConn.Close();
             return role;
+        }
+
+        public int GetUserID(string username)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select UserID From Users Where Username = @username;";
+
+            cmd.Parameters.Add(new SqlParameter("username", username));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                userID = Convert.ToInt32(dr[0].ToString());
+            }
+            DataHelper.DbConn.Close();
+            return userID;
         }
 
     }
