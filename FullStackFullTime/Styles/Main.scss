@@ -19,6 +19,11 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 body {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
@@ -29,16 +34,16 @@ h1 {
 p {
     margin: 0px 0px 0px 0px;
 }
-
+/*-345px (left dashboard width + right dashboard width)*/
 .mainContainer {
-    width: calc(100% - 220px);
-    min-height: 100vh;
-    overflow-y: scroll;
+    width: calc(100% - 345px);
+    height: 100vh;
+    overflow-y: auto;
     float: right;
     background-color: $light-charcoal;
 
     &__content {
-        width: calc(100% - 75px);
+        width: 100%;
         padding-left: 20px;
         padding-right: 20px;
     }

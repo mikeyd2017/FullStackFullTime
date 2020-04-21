@@ -11,7 +11,7 @@
             <h1><span>F</span><span>T</span></h1>
         </div>
         <div class="left-dashboard__mid__container">
-            @if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
+            @if (String.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("username")))
             {
                 <h3>Log In To View Profile</h3>
             }
@@ -31,6 +31,7 @@
                 <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
                 <li>@Html.ActionLink("Register", "Register", "Account")</li>
             </ul>
+            <a class="left-dashboard__bottom__container-fsftlink">www.fullstackfulltime.com</a>
         </div>
     </div>
 
@@ -39,6 +40,8 @@
         <div><a>C#</a></div>
         <div><a>JS</a></div>
         <div><a>PHP</a></div>
+        <div><a>JAVA</a></div>
+        <div><a>CSS</a></div>
     </div>
 </div>
 

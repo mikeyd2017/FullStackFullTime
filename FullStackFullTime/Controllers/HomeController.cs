@@ -25,22 +25,6 @@ namespace FullStackFullTime.Controllers
         }
         public IActionResult Landing()
         {
-            HttpContext.Session.SetString("categoryLanguage", "C#");
-            if (HttpContext.Session.GetString("username") == null)
-            {
-                HttpContext.Session.SetString("username", "");
-            }
-
-            if (HttpContext.Session.GetString("role") == null)
-            {
-                HttpContext.Session.SetString("role", "");
-            }
-
-            if (HttpContext.Session.GetString("userID") == null)
-            {
-                HttpContext.Session.SetString("userID", "");
-            }
-
             return View();
         }
 

@@ -37,7 +37,7 @@
     position: relative;
     display: block;
     color: white;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Hind', sans-serif;
     font-weight: 700;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
@@ -55,9 +55,19 @@
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     margin-top: 10px;
-    min-height: 450px; }
+    min-height: 450px;
+    text-align: center;
+    font-family: 'Hind', sans-serif; }
+    .left-dashboard__bottom__container-fsftlink {
+      color: white;
+      position: absolute;
+      bottom: 7.5px;
+      left: 16.5px;
+      font-weight: 500;
+      text-decoration: none; }
+      .left-dashboard__bottom__container-fsftlink:hover {
+        color: white; }
     .left-dashboard__bottom__container__list {
-      height: 100%;
       text-align: center;
       text-decoration: none;
       list-style: none;
@@ -70,18 +80,16 @@
         .left-dashboard__bottom__container__list li a {
           padding: 5px 0px;
           color: white;
-          font-size: 30px;
+          font-size: 25px;
+          font-weight: 600;
+          text-transform: uppercase;
           display: block;
           cursor: pointer; }
-          .left-dashboard__bottom__container__list li a:hover {
-            text-decoration: none; }
 
 .right-dashboard {
-  width: 75px;
+  width: 125px;
   height: 100vh;
-  position: absolute;
-  right: 0;
-  top: 0;
+  float: right;
   background-color: #161616;
   text-align: center; }
   .right-dashboard__content {
@@ -89,5 +97,7 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px; }
-    .right-dashboard__content i {
-      font-size: 70px; }
+    .right-dashboard__content a {
+      font-size: 35px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 900; }
