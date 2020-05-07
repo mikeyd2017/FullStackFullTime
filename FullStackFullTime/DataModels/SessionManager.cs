@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FullStackFullTime.Models
+namespace FullStackFullTime.DataModels
 {
     public class SessionManager
     {

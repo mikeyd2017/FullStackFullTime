@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FullStackFullTime.Models
+namespace FullStackFullTime.DataModels
 {
     public class User
     {
@@ -22,6 +22,8 @@ namespace FullStackFullTime.Models
         public DateTime DateCreated { get; set; }
 
         public string Role { get; set; }
+
+        public string AccountError { get; set; }
 
         public User()
         {

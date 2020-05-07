@@ -1,5 +1,5 @@
 ﻿using FullStackFullTime.Helpers;
-using FullStackFullTime.Models;
+using FullStackFullTime.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -18,13 +18,15 @@ namespace FullStackFullTime.SqlCommands
             DataHelper = dataHelper;
         }
 
-        public List<Question> GetAllQuestions()
+        public List<DataModels.Question> GetAllQuestions(string currentLanguage)
         {
             DataHelper.DbConn.Open();
 
             SqlCommand cmd = DataHelper.DbConn.CreateCommand();
 
-            cmd.CommandText = "Select * From Questions;";
+            cmd.CommandText = "Select * From Questions Where CategoryLanguage = @currentLanguage;";
+
+            cmd.Parameters.Add(new SqlParameter("currentLanguage", currentLanguage));
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -32,7 +34,7 @@ namespace FullStackFullTime.SqlCommands
 
             while (dr.Read())
             {
-                Question question = new Question(Convert.ToInt32(dr[0].ToString()), Convert.ToInt32(dr[1].ToString()), dr[2].ToString(), Convert.ToDateTime(dr[3].ToString()), dr[4].ToString());
+                Question question = new Question(Convert.ToInt32(dr[0].ToString()), Convert.ToInt32(dr[1].ToString()), dr[2].ToString(), Convert.ToDateTime(dr[3].ToString()), dr[4].ToString(), dr[5].ToString());
                 allQuestions.Add(question);
             }
 
@@ -81,7 +83,7 @@ namespace FullStackFullTime.SqlCommands
             
             while (dr.Read())
             {
-                question = new Question(Convert.ToInt32(dr[0].ToString()), Convert.ToInt32(dr[1].ToString()), dr[2].ToString(), Convert.ToDateTime(dr[3].ToString()), dr[4].ToString());
+                question = new Question(Convert.ToInt32(dr[0].ToString()), Convert.ToInt32(dr[1].ToString()), dr[2].ToString(), Convert.ToDateTime(dr[3].ToString()), dr[4].ToString(), dr[5].ToString());
             }
 
             DataHelper.DbConn.Close();
@@ -95,12 +97,13 @@ namespace FullStackFullTime.SqlCommands
 
             SqlCommand cmd = DataHelper.DbConn.CreateCommand();
 
-            cmd.CommandText = "Insert Into Questions Values(@userID, @categoryLanguage, @createDate, @questionText);";
+            cmd.CommandText = "Insert Into Questions Values(@userID, @categoryLanguage, @createDate, @questionText, @questionTitle);";
 
             cmd.Parameters.Add(new SqlParameter("userID", newQuestion.UserID));
             cmd.Parameters.Add(new SqlParameter("categoryLanguage", newQuestion.CategoryLanguage));
             cmd.Parameters.Add(new SqlParameter("createDate", newQuestion.CreateDate));
             cmd.Parameters.Add(new SqlParameter("questionText", newQuestion.QuestionText));
+            cmd.Parameters.Add(new SqlParameter("questionTitle", newQuestion.QuestionTitle));
 
             cmd.ExecuteNonQuery();
 

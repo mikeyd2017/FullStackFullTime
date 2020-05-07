@@ -1,5 +1,5 @@
 ﻿using FullStackFullTime.Helpers;
-using FullStackFullTime.Models;
+using FullStackFullTime.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,6 +14,8 @@ namespace FullStackFullTime.SqlCommands
         private string password;
         private string role;
         private int userID;
+        private string email;
+        private string username;
 
         public AccountCommands(DataHelper dataHelper)
         {
@@ -101,6 +103,106 @@ namespace FullStackFullTime.SqlCommands
             }
             DataHelper.DbConn.Close();
             return userID;
+        }
+
+        public string GetUserName(string username)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Username From Users Where Username = @username;";
+
+            cmd.Parameters.Add(new SqlParameter("username", username));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (!dr.HasRows)
+            {
+                username = null;
+            }
+            else
+            {
+                while (dr.Read())
+                {
+                    username = dr[0].ToString();
+                }
+            }
+
+
+            DataHelper.DbConn.Close();
+            return username;
+        }
+
+        public string GetUserNameWithID(int userID)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Username From Users Where UserID = @userID;";
+
+            cmd.Parameters.Add(new SqlParameter("userID", userID));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (!dr.HasRows)
+            {
+                username = null;
+            }
+            else
+            {
+                while (dr.Read())
+                {
+                    username = dr[0].ToString();
+                }
+            }
+
+
+            DataHelper.DbConn.Close();
+            return username;
+        }
+
+        public string CheckEmail(string email)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Email From Users Where Email = @email;";
+
+            cmd.Parameters.Add(new SqlParameter("email", email));
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            List<string> emails = new List<string>();
+
+            if (!dr.HasRows)
+            {
+                DataHelper.DbConn.Close();
+                email = null;
+                return email;
+            }
+            else
+            {
+                while (dr.Read())
+                {
+                    emails.Add(dr.GetString(0));
+                }
+
+                foreach (string eachEmail in emails)
+                {
+                    if (eachEmail == email)
+                    {
+                        return email;
+                    }
+                    else
+                    {
+                        email = null;
+                    }
+                }
+            }
+
+            return email;
         }
 
     }

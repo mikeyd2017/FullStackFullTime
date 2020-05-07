@@ -4,34 +4,41 @@
 @{
     ViewData["Title"] = "Question";
 
-    <p>@Model.ModelQuestion.QuestionID</p>
-    <p>@Model.ModelQuestion.QuestionText</p>
-    <p>@Model.ModelQuestion.CreateDate</p>
-    <p>@Model.ModelQuestion.CategoryLanguage</p>
-
-    @if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
-    {
-        <h1>Log in to answer a question</h1>
-    }
-    else
-    {
-        <form asp-controller="Question" asp-action="AddComment" method="post">
-            <input type="hidden" name="userID" value="@httpContextAccessor.HttpContext.Session.GetString("userID")" />
-            <input type="hidden" name="questionID" value="@Model.ModelQuestion.QuestionID"/>
-            <input type="text" name="commentText" />
-            <input type="submit" />
-        </form>
-    }
+    <div class="questions__container">
+        <h1 class="questions__container-title">@Model.ModelQuestion.QuestionTitle</h1>
+        <p class="questions__container-text">@Model.ModelQuestion.QuestionText</p>
+        <p class="questions__container-date">@Model.ModelQuestion.CreateDate.ToString("MM/dd/yyyy")</p>
+        <p class="questions__container-language">@Model.ModelQuestion.CategoryLanguage</p>
 
 
-    @foreach (var comment in Model.Comments)
-    {
-        <p>@comment.CommentID</p>
+        <h2 class="questions__container-commenttitle">Comments</h2>
+        @if (String.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("username")))
+        {
+            <h1 class="questions__container-loginerror">Log in to leave a comment or answer a question</h1>
+            <div class="questions__container-spacer"></div>
+        }
+        else
+        {
+            <div class="questions__container__commentform">
+                <h2 class="questions__container__commentform-title">Add a Comment</h2>
+                <form asp-controller="Question" asp-action="AddComment" method="post">
+                    <input type="hidden" name="userID" value="@httpContextAccessor.HttpContext.Session.GetString("userID")" />
+                    <input type="hidden" name="questionID" value="@Model.ModelQuestion.QuestionID" />
+                    <input class="questions__container__commentform-textinput" type="text" name="commentText" />
+                    <input class="questions__container__commentform-submit" type="submit" value="Add Comment"/>
+                </form>
+            </div>
+            <div class="questions__container-spacer"></div>
+        }
 
-        <p>@comment.CommentText</p>
-        <p>@comment.CreateDate</p>
-
-
-    }
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="questions__container__comment__container">
+                <h3 class="questions__container__comment__container-username">@comment.Username</h3>
+                <p class="questions__container__comment__container-text">@comment.CommentText</p>
+                <p class="questions__container__comment__container-date">@comment.CreateDate.ToString("MM/dd/yyyy")</p>
+            </div>
+        }
+    </div>
 }
 

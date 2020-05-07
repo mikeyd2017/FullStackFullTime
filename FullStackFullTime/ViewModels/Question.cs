@@ -1,4 +1,4 @@
-﻿using FullStackFullTime.Models;
+﻿using FullStackFullTime.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,10 @@ namespace FullStackFullTime.ViewModels
 {
     public class Question
     {
-        public Models.Question ModelQuestion { get; set; }
+        public DataModels.Question ModelQuestion { get; set; }
         public List<Comment> Comments { get; set; }
 
+        public string Username { get; set; }
         public Question()
         {
 

@@ -3,6 +3,15 @@
 @import 'Animations.scss';
 
 .questions {
+
+    &__loginerror {
+        color: $white;
+        font-size: 35px;
+        font-family: $raleway;
+        font-weight: $bold;
+        margin-top: 20px;
+    }
+
     &__title {
         color: $white;
         font-size: 90px;
@@ -12,6 +21,13 @@
         &-highlight {
             color: $teal;
         }
+    }
+
+    &__tag {
+        color: $white;
+        font-size: 25px;
+        font-family: $raleway;
+        font-weight: $bold;
     }
 
     &__textinput {
@@ -25,6 +41,7 @@
         transition: all .6s linear;
         border-width: 3px;
         border-color: white;
+        color: white;
 
 
         &:focus {
@@ -39,4 +56,227 @@
             border-color: $teal;
         }
     }
+
+    &__titleinput {
+        border: none;
+        border-bottom: solid;
+        background-color: transparent;
+        width: 25%;
+        font-size: 35px;
+        outline: none;
+        border-radius: 2px;
+        transition: all .6s linear;
+        border-width: 3px;
+        border-color: white;
+        color: white;
+    }
+
+
+    &__submit {
+        padding: 10px 15px;
+        outline: none;
+        border: none;
+        background-color: $teal;
+        color: white;
+        font-family: $raleway;
+        text-transform: uppercase;
+        margin-top: 10px;
+    }
+
+    &__container {
+
+        &-title {
+            color: $white;
+            font-size: 35px;
+            font-family: $hind;
+            font-weight: $bold;
+            margin-top: 20px;
+        }
+
+        &-text {
+            color: $white;
+            font-size: 17.5px;
+            font-family: $hind;
+            margin-top: 20px;
+        }
+
+        &-date {
+            margin-top: 15px;
+            color: $white;
+            font-size: 15px;
+            font-family: $hind;
+            font-weight: $bold;
+            margin-top: 20px;
+        }
+
+        &-language {
+            margin-top: 15px;
+            color: $white;
+            font-size: 15px;
+            font-family: $hind;
+            font-weight: $bold;
+            margin-top: 20px;
+        }
+
+        &-loginerror {
+            color: $white;
+            font-size: 17.5px;
+            font-family: $hind;
+            font-weight: $bold;
+            margin-top: 20px;
+        }
+
+        &-commenttitle {
+            color: $white;
+            font-size: 25px;
+            font-family: $hind;
+            font-weight: $bold;
+            margin-top: 35px;
+        }
+
+        &-spacer {
+            margin-bottom: 40px;
+        }
+
+        &__commentform {
+
+            &-title {
+                margin-top: 7px;
+                color: $white;
+                font-size: 20px;
+                font-family: $hind;
+                font-weight: $bold;
+            }
+
+            &-textinput {
+                margin-top: 7px;
+                color: $white;
+                font-size: 17.5px;
+                font-family: $hind;
+                border: none;
+                border-bottom: solid;
+                background-color: transparent;
+                width: 100%;
+                outline: none;
+                border-radius: 2px;
+                transition: all .6s linear;
+                border-width: 3px;
+                border-color: white;
+                color: white;
+
+
+                &:focus {
+                    border-color: $teal;
+                }
+
+                &:active {
+                    border-color: $teal;
+                }
+
+                &:hover {
+                    border-color: $teal;
+                }
+            }
+
+            &-submit {
+                padding: 10px 15px;
+                outline: none;
+                border: none;
+                background-color: $teal;
+                color: white;
+                font-family: $raleway;
+                text-transform: uppercase;
+                margin-top: 10px;
+            }
+        }
+
+        &__comment {
+
+            &__container {
+                margin-top: 10px;
+
+                &-username {
+                    margin-top: 15px;
+                    color: $white;
+                    font-size: 20px;
+                    font-family: $hind;
+                    font-weight: $bold;
+                }
+
+                &-text {
+                    margin-top: 15px;
+                    color: $white;
+                    font-size: 17.5px;
+                    font-family: $hind;
+                }
+
+                &-date {
+                    margin-top: 15px;
+                    color: $white;
+                    font-size: 15px;
+                    font-family: $hind;
+                    font-weight: $bold;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+    /*all questions CSS for each question*/
+    &__question {
+
+        &__container {
+            width: 100%;
+
+            &-link:last-of-type {
+
+                div {
+                    margin-bottom: 20px;
+                }
+            }
+
+            &-link:active {
+                text-decoration: none;
+            }
+
+            &-link:hover {
+                text-decoration: none;
+                color: white;
+
+                div {
+                    transition: .5s all;
+                    transition-timing-function: ease-in;
+                    -webkit-box-shadow: 2px 2px 6px 0px rgba(255,255,255,1);
+                    -moz-box-shadow: 2px 2px 6px 0px rgba(255,255,255,1);
+                    box-shadow: 2px 2px 6px 0px rgba(255,255,255,1);
+                }
+            }
+
+            &-link {
+
+                div {
+                    border: 2px solid white;
+                    margin-top: 20px;
+                    padding: 20px;
+                    border-radius: 20px;
+                }
+            }
+
+            &-title {
+                font-size: 27.5px;
+                font-family: $hind;
+            }
+
+            &-text {
+                text-align: left;
+            }
+
+            &-date {
+            }
+
+            &-language {
+            }
+        }
+    }
 }
+
+

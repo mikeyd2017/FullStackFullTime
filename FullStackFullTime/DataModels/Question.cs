@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace FullStackFullTime.Models
+namespace FullStackFullTime.DataModels
 {
     public class Question
     {
@@ -18,18 +18,30 @@ namespace FullStackFullTime.Models
 
         public string QuestionText { get; set; }
 
+        public string QuestionTitle { get; set; }
+
         public Question()
         {
 
         }
 
-        public Question([Optional] int questionID, int userID, string categoryLanguage, DateTime createDate, string questionText)
+        public Question([Optional] int questionID, int userID, string categoryLanguage, DateTime createDate, string questionText, string questionTitle)
         {
             QuestionID = questionID;
             UserID = userID;
             CategoryLanguage = categoryLanguage;
             CreateDate = createDate;
             QuestionText = questionText;
+            QuestionTitle = questionTitle;
+        }
+
+        public enum ProgrammingLanguages
+        {
+            CSharp,
+            JS,
+            PHP,
+            Java,
+            CSS
         }
     }
 }

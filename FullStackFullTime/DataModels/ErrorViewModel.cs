@@ -1,6 +1,6 @@
 using System;
 
-namespace FullStackFullTime.Models
+namespace FullStackFullTime.DataModels
 {
     public class ErrorViewModel
     {

@@ -1,4 +1,4 @@
-﻿@model Question
+﻿@model FullStackFullTime.DataModels.Question
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor httpContextAccessor
 
@@ -6,19 +6,20 @@
     ViewData["Title"] = "Ask";
 }
 
-@if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
+@if (String.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("username")))
 {
-    <h1>Log in to ask a question</h1>
+    <h1 class="questions__loginerror">Log in to ask a question</h1>
 }
 else
 {
     <div class="questions">
-        <h1 class="questions__title"><span class="questions__title-highlight">Ask</span> a question.</h1>
+        <h1 class="questions__title"><span class="questions__title-highlight">Ask</span> a question.</h1><br />
         <form asp-controller="Question" asp-action="Ask" method="post">
             <input type="hidden" asp-for="UserID" value="@httpContextAccessor.HttpContext.Session.GetString("userID")" />
             <input type="hidden" asp-for="CategoryLanguage" value="@httpContextAccessor.HttpContext.Session.GetString("categoryLanguage")" />
-            <input type="text" asp-for="QuestionText" class="questions__textinput" />
-            <input type="submit" />
+            <span class="questions__tag">Title:</span><br /><input type="text" asp-for="QuestionTitle" class="questions__titleinput" /><br /><br />
+            <span class="questions__tag">Text:</span><br /><input type="text" asp-for="QuestionText" class="questions__textinput" /><br /><br />
+            <input class="questions__submit" type="submit" value="Ask Question" />
         </form>
     </div>
 }

@@ -13,18 +13,18 @@
         <div class="left-dashboard__mid__container">
             @if (String.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("username")))
             {
-                <h3>Log In To View Profile</h3>
+                <h3>Login</h3>
             }
             else
             {
-                <h3>@httpContextAccessor.HttpContext.Session.GetString("username")</h3>
+                <h3 style="font-size: 22px">@httpContextAccessor.HttpContext.Session.GetString("username")</h3>
                 <h4>@httpContextAccessor.HttpContext.Session.GetString("role")</h4>
 
             }
         </div>
         <div class="left-dashboard__bottom__container">
             <ul class="left-dashboard__bottom__container__list">
-                <li><a>Home</a></li>
+                <li>@Html.ActionLink("Home", "Landing", "Home")</li>
                 <li>@Html.ActionLink("All Questions", "Questions", "Question")</li>
                 <li>@Html.ActionLink("Ask a Question", "Ask", "Question")</li>
                 <li>@Html.ActionLink("Log In", "Login", "Account")</li>
@@ -37,11 +37,16 @@
 
 <div class="right-dashboard">
     <div class="right-dashboard__content">
-        <div><a>C#</a></div>
-        <div><a>JS</a></div>
-        <div><a>PHP</a></div>
-        <div><a>JAVA</a></div>
-        <div><a>CSS</a></div>
+        <div>@Html.ActionLink("C#", "CSharp", "Question")</div>
+        <div>@Html.ActionLink("JS", "JS", "Question")</div>
+        <div>@Html.ActionLink("PHP", "PHP", "Question")</div>
+        <div>@Html.ActionLink("JAVA", "Java", "Question")</div>
+        <div>@Html.ActionLink("CSS", "CSS", "Question")</div>
+    </div>
+
+    <div>
+        <h3>Current Language</h3>
+        <h3>@httpContextAccessor.HttpContext.Session.GetString("CurrentLanguage")</h3>
     </div>
 </div>
 

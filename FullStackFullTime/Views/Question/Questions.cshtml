@@ -1,13 +1,18 @@
-﻿@model IEnumerable<Question>
+﻿@model IEnumerable<FullStackFullTime.DataModels.Question>
 @{
     ViewData["Title"] = "Questions";
 }
 
 @foreach (var question in Model)
 {
-    @Html.ActionLink("Go To Question", "Question", "Question", new { questionID = question.QuestionID });
-    <p>@question.QuestionText</p>
-    <p>@question.CreateDate</p>
-    <p>@question.CategoryLanguage</p>
+    <a class="questions__question__container-link" href="@Url.Action("Question", "Question", new { questionID = question.QuestionID })">
+        <div class="questions__question__container">
+            <h1 class="questions__question__container-title">@question.QuestionTitle</h1>
+            <p class="questions__question__container-text">@question.QuestionText</p>
+            <p class="questions__question__container-date">@question.CreateDate.ToString("MM/dd/yyyy")</p>
+            <p class="questions__question__container-language">@question.CategoryLanguage</p>
+        </div>
+    </a>
+
 }
 

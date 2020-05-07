@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FullStackFullTime.Models;
+using FullStackFullTime.DataModels;
 using Microsoft.Extensions.Configuration;
 using FullStackFullTime.SqlCommands;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +25,12 @@ namespace FullStackFullTime.Controllers
         }
         public IActionResult Landing()
         {
+            _Factory.TableCommands.RaiseVarCharQuestionTextToQuestionTable();
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("CurrentLanguage")))
+            {
+                HttpContext.Session.SetString("CurrentLanguage", "C#");
+            }
+
             return View();
         }
 
@@ -33,5 +39,6 @@ namespace FullStackFullTime.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

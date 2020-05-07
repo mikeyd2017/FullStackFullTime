@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FullStackFullTime.Helpers;
+using FullStackFullTime.DataModels;
 using FullStackFullTime.SqlCommands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,42 +24,101 @@ namespace FullStackFullTime.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            HttpContext.Session.SetString("uriBeforeLogin", Request.Headers["Referer"].ToString());
+
+            User newUser = new User();
+            return View(newUser);
         }
 
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            _Factory.AccountHelper.CheckAccount(username, password);
+            string errorOrPassword = _Factory.AccountHelper.CheckLogin(username, password);
+
+            if (password != errorOrPassword)
+            {
+                User loginUser = new User();
+                loginUser.AccountError = errorOrPassword;
+
+                return View(loginUser);
+            }
+
+            HttpContext.Session.SetString("role", _Factory.AccountCommands.GetUserRole(username));
+            HttpContext.Session.SetString("userID", Convert.ToString(_Factory.AccountCommands.GetUserID(username)));
+            HttpContext.Session.SetString("username", username);
+
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("uriBeforeLogin")))
+            {
+                return Redirect(HttpContext.Request.Headers["Referer"].ToString());
+            }
+            else
+            {
+                return Redirect(HttpContext.Session.GetString("uriBeforeLogin"));
+            }
+
+
+        }
+        
+        public IActionResult Register()
+        {
+            HttpContext.Session.SetString("uriBeforeLogin", Request.Headers["Referer"].ToString());
+            User newUser = new User();
+
+            return View(newUser);
+        }
+
+        [HttpPost]
+        public IActionResult Register(string username, string password, string email)
+        {
+            string errorMessage = _Factory.AccountHelper.CheckRegister(username, password, email);
+            if (!String.IsNullOrEmpty(errorMessage))
+            {
+                User registerUser = new User();
+                registerUser.AccountError = errorMessage;
+
+                return View(registerUser);
+            }
+
+            password = _Factory.AccountHelper.HashPassword(password);
+
+            _Factory.AccountHelper.CreateUser(username, password, email);
+
 
             HttpContext.Session.SetString("role", _Factory.AccountCommands.GetUserRole(username));
             HttpContext.Session.SetString("userID", Convert.ToString(_Factory.AccountCommands.GetUserID(username)));
             HttpContext.Session.SetString("username", username);
 
 
-            return View();
-        }
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("uriBeforeLogin")))
+            {
+                return Redirect(HttpContext.Request.Headers["Referer"].ToString());
+            }
+            else
+            {
+                return Redirect(HttpContext.Session.GetString("uriBeforeLogin"));
+            }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Register(string username, string password, string email)
-        {
-
-            _Factory.AccountHelper.CreateUser(username, _Factory.AccountHelper.HashPassword(password), email);
-            return View();
         }
 
         public IActionResult Logout()
         {
-            HttpContext.Session.SetString("role", "");
-            HttpContext.Session.SetString("userID", "");
-            HttpContext.Session.SetString("username", "");
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("role")))
+            {
+                HttpContext.Session.SetString("role", "");
+            }
 
-            return RedirectToAction("Questions", "Question");
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("userID")))
+            {
+                HttpContext.Session.SetString("userID", "");
+            }
+
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("username")))
+            {
+                HttpContext.Session.SetString("username", "");
+            }
+
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
 

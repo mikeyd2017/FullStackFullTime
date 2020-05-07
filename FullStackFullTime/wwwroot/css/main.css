@@ -17,9 +17,10 @@ time, mark, audio, video {
   font-size: 100%;
   vertical-align: baseline; }
 
-a:hover {
-  text-decoration: none;
-  cursor: pointer; }
+a {
+  cursor: pointer;
+  text-decoration: none !important;
+  color: white; }
 
 body {
   padding-top: 0px !important;
@@ -37,7 +38,7 @@ p {
   height: 100vh;
   overflow-y: auto;
   float: right;
-  background-color: #191919; }
+  background-color: #1a1a1a; }
   .mainContainer__content {
     width: 100%;
     padding-left: 20px;
@@ -53,31 +54,119 @@ p {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #191919; }
+  background: #1a1a1a; }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; }
 
-.departmentContainer {
-  width: 100%; }
-  .departmentContainer__department {
-    display: block;
-    width: 22.5%;
-    min-width: 200px;
-    float: left;
-    margin-left: 2.5%;
-    background-color: #0d0d0d;
-    margin-top: 50px;
-    height: 230px; }
-    .departmentContainer__department:first-of-type {
-      margin-left: 1.25%; }
-    .departmentContainer__department:nth-child(5n) {
-      margin-left: 1.25%; }
-    .departmentContainer__department__name {
-      font-size: 75px;
-      text-align: center;
-      color: white;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%); }
+.landing__container {
+  text-align: center; }
+  .landing__container-welcome {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 35px;
+    font-family: "Hind", "sans-serif";
+    font-weight: 900; }
+  .landing__container-text {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 20px;
+    font-family: "Hind", "sans-serif";
+    font-weight: 900; }
+
+.login__container {
+  margin: auto;
+  display: block;
+  width: 50%; }
+  .login__container-title {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 35px;
+    font-family: "Hind", "sans-serif";
+    font-weight: 900;
+    text-align: center; }
+  .login__container p {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 17.5px;
+    font-family: "Hind", "sans-serif";
+    font-weight: 900; }
+  .login__container input {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 17.5px;
+    font-family: "Hind", "sans-serif";
+    border: none;
+    border-bottom: solid;
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+    border-radius: 2px;
+    transition: all .6s linear;
+    border-width: 3px;
+    border-color: white;
+    color: white; }
+    .login__container input:focus {
+      border-color: #3AAFA9; }
+    .login__container input:active {
+      border-color: #3AAFA9; }
+    .login__container input:hover {
+      border-color: #3AAFA9; }
+  .login__container button {
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    background-color: #3AAFA9;
+    color: white;
+    font-family: "Raleway", "sans-serif";
+    text-transform: uppercase;
+    margin-top: 10px; }
+
+.register__container {
+  margin: auto;
+  display: block;
+  width: 50%; }
+  .register__container-title {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 35px;
+    font-family: "Hind", "sans-serif";
+    font-weight: 900;
+    text-align: center; }
+  .register__container p {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 17.5px;
+    font-family: "Hind", "sans-serif";
+    font-weight: 900; }
+  .register__container input {
+    margin-top: 7px;
+    color: #FEFFFF;
+    font-size: 17.5px;
+    font-family: "Hind", "sans-serif";
+    border: none;
+    border-bottom: solid;
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+    border-radius: 2px;
+    transition: all .6s linear;
+    border-width: 3px;
+    border-color: white;
+    color: white; }
+    .register__container input:focus {
+      border-color: #3AAFA9; }
+    .register__container input:active {
+      border-color: #3AAFA9; }
+    .register__container input:hover {
+      border-color: #3AAFA9; }
+  .register__container button {
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    background-color: #3AAFA9;
+    color: white;
+    font-family: "Raleway", "sans-serif";
+    text-transform: uppercase;
+    margin-top: 10px; }
